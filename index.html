@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Decimal to binario</title>
+</head>
+<body>
+    <h1>Conversor Decimal &lt;-&gt; Binário</h1>
+    <div class="container">
+        <div>
+            <label for="decimal">Decimal:</label>
+            <input type="number" id="decimal" min="0" />
+            <button onclick="decimalParaBinario()">Converter para Binário</button>
+            <p id="resultadoBinario"></p>
+        </div>
+        <div>
+            <label for="binario">Binário:</label>
+            <input type="text" id="binario" pattern="[01]+" />
+            <button onclick="binarioParaDecimal()">Converter para Decimal</button>
+            <p id="resultadoDecimal"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
