@@ -1,19 +1,43 @@
-function decimalParaBinario() {
-    const decimal = document.getElementById('decimal').value;
-    if (decimal === '') {
-        document.getElementById('resultadoBinario').textContent = 'Digite um número decimal.';
-        return;
-    }
-    const binario = parseInt(decimal, 10).toString(2);
-    document.getElementById('resultadoBinario').textContent = `Binário: ${binario}`;
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const conversionType = document.getElementById('conversionType');
+    const inputValue = document.getElementById('inputValue');
+    const inputLabel = document.getElementById('inputLabel');
+    const convertBtn = document.getElementById('convertBtn');
+    const resultContent = document.getElementById('resultContent');
+    const errorMessage = document.getElementById('errorMessage');
 
-function binarioParaDecimal() {
-    const binario = document.getElementById('binario').value;
-    if (!/^[01]+$/.test(binario)) {
-        document.getElementById('resultadoDecimal').textContent = 'Digite um número binário válido.';
-        return;
-    }
-    const decimal = parseInt(binario, 2);
-    document.getElementById('resultadoDecimal').textContent = `Decimal: ${decimal}`;
-}
+    conversionType.addEventListener('change', function () {
+        if (conversionType.value === 'decToBin') {
+            inputLabel.textContent = 'Valor Decimal';
+            inputValue.placeholder = 'Ex: 42';
+        } else {
+            inputLabel.textContent = 'Valor Binário';
+            inputValue.placeholder = 'Ex: 101010';
+        }
+        resultContent.textContent = '-';
+        errorMessage.textContent = '';
+        inputValue.value = '';
+    });
+
+    convertBtn.addEventListener('click', function () {
+        errorMessage.textContent = '';
+        resultContent.textContent = '-';
+        const value = inputValue.value.trim();
+
+        if (conversionType.value === 'decToBin') {
+            if (!/^\d+$/.test(value)) {
+                errorMessage.textContent = 'Digite um número decimal válido.';
+                return;
+            }
+            const binario = parseInt(value, 10).toString(2);
+            resultContent.textContent = `Binário: ${binario}`;
+        } else {
+            if (!/^[01]+$/.test(value)) {
+                errorMessage.textContent = 'Digite um número binário válido.';
+                return;
+            }
+            const decimal = parseInt(value, 2);
+            resultContent.textContent = `Decimal: ${decimal}`;
+        }
+    });
+});
